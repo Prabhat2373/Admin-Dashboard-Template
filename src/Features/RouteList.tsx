@@ -1,4 +1,5 @@
 import { ListInvoice } from '../Pages/ListInvoice';
+import Test2 from '../Pages/Test2';
 import TestPage from '../Pages/TestPage';
 import Layout from '../components/Layout';
 
@@ -10,5 +11,9 @@ export const RouteList = [
   {
     path: '/test',
     element: <Layout child={<ListInvoice />} />,
+  },
+  {
+    path: '/test2',
+    element: <Layout child={<Test2 />} />,
   },
 ];

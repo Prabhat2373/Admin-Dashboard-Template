@@ -8,8 +8,18 @@ interface NavbarProps {
   name: string;
   hideSearch: boolean;
   buttonName: string;
+  buttonIcon?: any;
+  buttonVarient: 'primary' | 'secondary' | 'danger' | 'disabled';
+  onClick:()=> void;
 }
-const Navbar = ({ name, hideSearch, buttonName }: NavbarProps) => {
+const Navbar = ({
+  name,
+  buttonIcon,
+  hideSearch,
+  buttonName,
+  buttonVarient,
+  onClick
+}: NavbarProps) => {
   return (
     <nav>
       <div className="flex justify-between w-full p-4">
@@ -17,16 +27,12 @@ const Navbar = ({ name, hideSearch, buttonName }: NavbarProps) => {
           {name}
         </div>
         <div className="flex gap-2 items-center">
-          {!hideSearch && (
-            <SearchBar/>
-          )}
+          {!hideSearch && <SearchBar />}
           <Button
-            varient="primary"
-            icon={<PlusIcon />}
+            varient={buttonVarient}
+            icon={buttonIcon}
             name={buttonName}
-            onClick={() => {
-              console.log('Clicked');
-            }}
+            onClick={onClick}
           />
         </div>
       </div>

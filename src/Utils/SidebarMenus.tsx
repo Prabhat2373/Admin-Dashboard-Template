@@ -15,7 +15,7 @@ export const SidebarMenus = [
   {
     name: 'Library',
     icon: <AnalyticsIcon className="w-10 h-10" />,
-    route: '/test',
+    route: '/test2',
   },
   {
     name: 'Explore',

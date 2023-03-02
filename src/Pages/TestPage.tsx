@@ -7,6 +7,8 @@ import { Form, Formik, FormikValues } from 'formik';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import TabButtons from '../components/TabButtons';
+import CrossIcon from '../icons/CrossIcon';
+import DropDownMenu from '../components/DropDownMenu';
 
 interface FormValues {
   firstName: string;
@@ -33,6 +35,9 @@ const TestPage = () => {
   return (
     <>
       <Page
+        onNavbuttonClick={() => console.log('TEST 2')}
+        navBtnVarient="disabled"
+        navBtuIcon={<CrossIcon />}
         pageName="Test"
         hideSearch={true}
         navButtonName="Test"
@@ -64,6 +69,14 @@ const TestPage = () => {
               onClick={() => {
                 setIsOpen((prev) => !prev);
               }}
+            />
+            <DropDownMenu
+              menuOptions={[
+                { title: 'Edit' },
+                { title: 'add' },
+                { title: 'Update' },
+              ]}
+              menuTitle="..."
             />
           </>
         }

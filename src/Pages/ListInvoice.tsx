@@ -2,11 +2,15 @@ import React from 'react';
 import Page from '../components/Page';
 import TaskCard from '../components/TaskCard';
 import InputField from '../components/InputField';
+import PlusIcon from '../icons/PlusIcon';
 
 export const ListInvoice = () => {
   return (
     <>
       <Page
+      onNavbuttonClick={()=>console.log("LIST PAGE")}
+        navBtnVarient="primary"
+        navBtuIcon={<PlusIcon />}
         pageName="Invoice"
         hideSearch={false}
         navButtonName="Back"
