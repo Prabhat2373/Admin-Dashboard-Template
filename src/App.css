@@ -1,7 +1,10 @@
 * {
   box-sizing: border-box;
+  font-family: 'DM Sans', sans-serif;
 }
-
+html{
+  background-color: #F1F4FA;
+}
 body {
   margin: 0;
   background: #202124;
@@ -9,13 +12,27 @@ body {
 }
 
 button {
-  background: transparent;
   border: 0;
   padding: 0;
   cursor: pointer;
   text-align: left;
 }
-
+/* BUTTON COLORS ONLY  */
+.primary{
+  background-color: #3A36DB;
+}
+.secondary{
+  background-color: #03A89E;
+}
+.danger{
+  background-color:#D11A2A;
+}
+.warning{
+  background-color: yellow;
+}
+.disabled{
+  background-color: #99B2C6;
+}
 .sidebar {
   position: fixed;
   top: 0;
@@ -24,16 +41,15 @@ button {
   flex-direction: column;
   width: 260px;
   height: 100%;
-  background: #0f0f0f;
+  /* background: #0f0f0f; */
   transition: width 0.4s;
 }
 
 .sidebar-header {
   display: flex;
-  align-items: center;
   height: 72px;
-  padding: 0 1.25rem 0 0;
-  background: rgba(0, 0, 0, 0.1);
+  padding: 0 1.25rem 0 13px;
+  justify-content: flex-start;
 }
 
 .sidebar .sidebar-header button {
@@ -60,13 +76,13 @@ button {
   gap: 25px;
   align-items: center;
   height: 50px;
-  width: 100%;
+  width: 90%;
   font-family: inherit;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
   padding: 0 25px;
-  color: #d4d4ea;
+  /* color: #d4d4ea; */
 }
 
 .sidebar button span:nth-child(2) {
@@ -74,7 +90,9 @@ button {
 }
 
 .sidebar button.active {
-  background: #6a28cb;
+  background: #F1F4FA;
+  border-radius: 0 25px 25px 0;
+  width: 90%;
 }
 
 .sub-nav {

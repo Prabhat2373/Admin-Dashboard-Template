@@ -1,74 +1,46 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import NavButton from './NavButton';
-
-const menuItems = [
-  {
-    name: 'Apps',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-  {
-    name: 'Subscriptions',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-  {
-    name: 'Library',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-  {
-    name: 'Explore',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-    items: ['Movies', 'Live', 'Gaming', 'News'],
-  },
-  {
-    name: 'Settings',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-    items: ['History', 'Help', 'Feedback', 'Reports'],
-  },
-  {
-    name: 'Trending',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-  {
-    name: 'Music',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-  {
-    name: 'Watch Later',
-    icon: 'https://img.icons8.com/material-outlined/24/null/dashboard-layout.png',
-  },
-];
-
-
-
-const NavHeader = () => (
-  <header className="sidebar-header">
-    <button type="button">
-      {/* <Icon icon="menu" /> */}
-      
-    </button>
-    {/* <img src={Logo} className="sidebar-logo" /> */}
-    <h1 className="text-white">Dashboard</h1>
-  </header>
-);
-
-
+import UpArrow from '../icons/UpArrow';
+import DashboardIcon from '../icons/DashboardIcon';
+import AnalyticsIcon from '../icons/AnalyticsIcon';
+import Invoice from '../icons/Invoice';
+import ProfileIcon from '../icons/ProfileIcon';
+import { useNavigate } from 'react-router-dom';
+import { SidebarMenus } from '../Utils/SidebarMenus';
 
 export const Sidebar = () => {
   const [activeItem, setActiveItem] = useState<string>('');
-
+  const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
   const handleClick = (item: string) => {
+    console.log(item);
     console.log('activeItem', activeItem);
     setActiveItem(item !== activeItem ? item : '');
+    navigate(`/${item}`);
   };
 
   const isSubNavOpen = (item: string, items: string[]) =>
     items.some((i) => i === activeItem) || item === activeItem;
-
+  // console.log(isHovered);
+  console.log('IS SUB NAV', isSubNavOpen?.name);
   return (
-    <aside className="sidebar">
-      <nav className="sidebar-nav">
-        <NavHeader />
-        {menuItems.map((item) => (
+    <aside
+      className="sidebar bg-primary-bgPrimary z-50"
+      style={{ width: isHovered ? '250px' : '100px' }}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
+    >
+      <nav className="sidebar-nav bg-white">
+        <header className="sidebar-header flex justify-center items-center">
+          {/* <img src={Logo} className="sidebar-logo" /> */}
+          <button type="button">{<DashboardIcon />}</button>
+          {isHovered && <h1 className="">Dashboard</h1>}
+        </header>
+        {SidebarMenus.map((item) => (
           <>
             {!item.items && (
               <NavButton
@@ -77,6 +49,8 @@ export const Sidebar = () => {
                 icon={item.icon}
                 isActive={activeItem === item.name}
                 hasSubNav={!!item.items}
+                isHovered={isHovered}
+                route={item.route}
               />
             )}
             {item.items && (
@@ -87,6 +61,8 @@ export const Sidebar = () => {
                   icon={item.icon}
                   isActive={activeItem === item.name}
                   hasSubNav={!!item.items}
+                  isHovered={isHovered}
+                  route={item.route}
                 />
                 <div
                   className={`sub-nav ${
@@ -98,6 +74,9 @@ export const Sidebar = () => {
                       onClick={handleClick}
                       name={subItem}
                       isActive={activeItem === subItem}
+                      // icon={<UpArrow />}
+                      route={item.route}
+                      isHovered={isHovered}
                     />
                   ))}
                 </div>
@@ -105,6 +84,11 @@ export const Sidebar = () => {
             )}
           </>
         ))}
+        <div className="absolute bottom-0">
+          <button>
+            <ProfileIcon />
+          </button>
+        </div>
       </nav>
     </aside>
   );

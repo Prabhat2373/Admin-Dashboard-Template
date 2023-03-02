@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Sidebar } from './components/Sidebar';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouteList } from './Features/RouteList';
+const router = createBrowserRouter(RouteList);
 
 function App() {
-  return (
-    <>
-      <Sidebar />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

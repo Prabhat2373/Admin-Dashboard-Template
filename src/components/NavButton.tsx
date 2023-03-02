@@ -1,13 +1,20 @@
+import { useNavigate } from 'react-router-dom';
+import DownArrow from '../icons/DownArrow';
+import UpArrow from '../icons/UpArrow';
+
 type ButtonProps = {
   onClick: (item: string) => void;
   name: string;
-  icon?: string;
+  icon?: any;
   isActive: boolean;
+  isHovered?: boolean;
   hasSubNav?: boolean;
+  route?: any;
 };
-const Icon = ({ icon }: { icon: string }) => (
-  //   <span className="material-symbols-outlined">{icon}</span>
-  <img src={icon} alt="icon" className="invert" />
+const Icon = ({ icon }: { icon: any }) => (
+  <>
+    <span className="material-symbols-outlined">{icon}</span>
+  </>
 );
 
 const NavButton = ({
@@ -16,15 +23,27 @@ const NavButton = ({
   icon,
   isActive,
   hasSubNav,
-}: ButtonProps) => (
-  <button
-    type="button"
-    onClick={() => onClick(name)}
-    className={isActive ? 'active' : ''}
-  >
-    {icon && <Icon icon={icon} />}
-    <span>{name}</span>
-    {hasSubNav && <Icon icon={`expand_${isActive ? 'less' : 'more'}`} />}
-  </button>
-);
+  isHovered,
+  route,
+}: ButtonProps) => {
+  const navigate = useNavigate();
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        onClick(name);
+        navigate(route);
+      }}
+      className={`${
+        isActive ? 'active' : ''
+      } dark:text-primary-bgPrimary text-black`}
+    >
+      {icon}
+      {isHovered && <span>{name}</span>}
+      {hasSubNav && isHovered && (
+        <Icon icon={!isActive ? <DownArrow /> : <UpArrow />} />
+      )}
+    </button>
+  );
+};
 export default NavButton;

@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Sidebar } from './Sidebar';
 
-const Layout = () => {
+const Layout = ({ child }: { child: JSX.Element }) => {
   return (
-    <div>Layout</div>
-  )
-}
+    <>
+      <div className="bg-primary-bgPrimary">
+        <Sidebar />
+        {child}
+      </div>
+    </>
+  );
+};
 
-export default Layout
+export default Layout;
