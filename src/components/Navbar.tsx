@@ -1,7 +1,5 @@
 import React from 'react';
 import Button from './Button';
-import PlusIcon from '../icons/PlusIcon';
-import SearchIcon from '../icons/SearchIcon';
 import SearchBar from './SearchBar';
 
 interface NavbarProps {
