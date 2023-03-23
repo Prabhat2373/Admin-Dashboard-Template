@@ -1,5 +1,11 @@
 import React, { FC, MutableRefObject, useMemo } from 'react';
-import { useTable, Column, useSortBy, useRowSelect } from 'react-table';
+import {
+  useTable,
+  Column,
+  useSortBy,
+  useRowSelect,
+  usePagination,
+} from 'react-table';
 import UpArrow from '../../icons/UpArrow';
 import DownArrow from '../../icons/DownArrow';
 
@@ -22,7 +28,7 @@ const IndeterminateCheckbox = React.forwardRef(
           type="checkbox"
           ref={resolvedRef}
           {...rest}
-          onInput={() => console.log('LOGGG',resolvedRef)}
+          onInput={() => console.log('LOGGG', resolvedRef)}
         />
       </>
     );
@@ -33,33 +39,49 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
   const tableData = useMemo(() => data, [data]);
   const tableColumns = useMemo(() => columns, [columns]);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      { columns: tableColumns, data: tableData },
-      useSortBy,
-      useRowSelect,
-      (hooks) => {
-        hooks.visibleColumns.push((columns) => [
-          {
-            id: 'selection',
-            Header: ({ getToggleAllRowsSelectedProps }) => (
-              <div>
-                <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-              </div>
-            ),
-            Cell: ({ row }) => (
-              <div>
-                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-              </div>
-            ),
-          },
-          ...columns,
-        ]);
-      }
-    );
-
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    selectedFlatRows,
+    state: { pageIndex, pageSize, selectedRowIds },
+  } = useTable(
+    { columns: tableColumns, data: tableData },
+    useSortBy,
+    usePagination,
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        {
+          id: 'selection',
+          Header: ({ getToggleAllRowsSelectedProps }) => (
+            <div>
+              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+            </div>
+          ),
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    }
+  );
+  console.log(pageSize);
   return (
-    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+    <div className=" overflow-hidden border-gray-200 sm:rounded-lg">
       <table
         {...getTableProps()}
         className="min-w-full divide-y divide-gray-200"
@@ -70,9 +92,11 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider relative"
+                  className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider relative"
                 >
-                  {column.render('Header')}
+                  {column.render('Header') === 'actions'
+                    ? ''
+                    : column?.render('Header')}
                   <span id="col-span" className="absolute bottom-2 top-3 ml-3">
                     {column?.isSorted ? (
                       column?.isSortedDesc ? (
@@ -91,16 +115,19 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
         </thead>
         <tbody
           {...getTableBodyProps()}
-          className="bg-white divide-y divide-gray-200"
+          className="bg-white divide-y divide-gray-200 "
         >
           {rows.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr
+                {...row.getRowProps()}
+                className="odd:bg-white even:bg-primary-bgPrimary"
+              >
                 {row.cells.map((cell) => (
                   <td
                     {...cell.getCellProps()}
-                    className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                    className="px-6 py-5 whitespace-nowrap text-sm text-gray-900"
                   >
                     {cell.render('Cell')}
                   </td>
@@ -110,6 +137,79 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
           })}
         </tbody>
       </table>
+      <div className="pagination">
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+          {'<<'}
+        </button>{' '}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <span>
+          | Go to page:{' '}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(page);
+            }}
+            style={{ width: '100px' }}
+          />
+        </span>{' '}
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pageSize) => (
+            <option key={pageSize} value={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+        <pre>
+          <code>
+            {JSON.stringify(
+              {
+                selectedRowIds: selectedRowIds,
+                'selectedFlatRows[].original': selectedFlatRows.map(
+                  (d) => d.original
+                ),
+              },
+              null,
+              2
+            )}
+          </code>
+        </pre>
+        <pre>
+          <code>
+            {JSON.stringify(
+              {
+                pageIndex,
+                pageSize,
+                pageCount,
+                canNextPage,
+                canPreviousPage,
+              },
+              null,
+              2
+            )}
+          </code>
+        </pre>
+      </div>
     </div>
   );
 };

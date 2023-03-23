@@ -1,6 +1,7 @@
 import React from 'react';
-import Page from '../components/Page';
+import Page from '../Layout/Page';
 import DataTable from '../components/Table/DataTable';
+import HeartIcon from '../icons/HeartIcon';
 
 const Test2 = () => {
   interface User {
@@ -53,20 +54,22 @@ const Test2 = () => {
   return (
     <>
       <Page
-        content={
-          <div>
-            <div>
-              <h1>Table</h1>
-              <DataTable columns={columns} data={users} />
-            </div>
-          </div>
-        }
         hideSearch
         navButtonName="back"
         pageName="Test"
         navBtnVarient="disabled"
         onNavbuttonClick={() => console.log('TEST PAGE')}
-      />
+      >
+        <div>
+          <div>
+            <h1>Table</h1>
+            <DataTable columns={columns} data={users} />
+          </div>
+          <div className="bg-primary-pink rounded-full absolute p-8">
+            <HeartIcon />
+          </div>
+        </div>
+      </Page>
     </>
   );
 };

@@ -1,11 +1,7 @@
 import React from 'react';
-import Page from '../Layout/Page';
-import TaskCard from '../components/Cards/TaskCard';
-import InputField from '../components/Forms/InputField';
-import PlusIcon from '../icons/PlusIcon';
-import DataTable from '../components/Table/DataTable';
+import DataTable from '../../components/Table/DataTable';
 
-export const ListInvoice = () => {
+const UsersTable = () => {
   interface User {
     id: number;
     name: string;
@@ -187,95 +183,11 @@ export const ListInvoice = () => {
       status: 'active',
     },
   ];
-
-  // const columns = React.useMemo(
-  //   () => [
-  //     {
-  //       Header: 'Name',
-  //       columns: [
-  //         {
-  //           Header: 'First Name',
-  //           accessor: 'firstName',
-  //         },
-  //         {
-  //           Header: 'Last Name',
-  //           accessor: 'lastName',
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       Header: 'Info',
-  //       columns: [
-  //         {
-  //           Header: 'Age',
-  //           accessor: 'age',
-  //         },
-  //         {
-  //           Header: 'Visits',
-  //           accessor: 'visits',
-  //         },
-  //         {
-  //           Header: 'Status',
-  //           accessor: 'status',
-  //         },
-  //         {
-  //           Header: 'Profile Progress',
-  //           accessor: 'progress',
-  //         },
-  //       ],
-  //     },
-  //   ],
-  //   []
-  // );
-
-  // const data = React.useMemo(() => makeData(100000), []);
-
   return (
-    <>
-      <Page
-        onNavbuttonClick={() => console.log('LIST PAGE')}
-        navBtnVarient="primary"
-        navBtuIcon={<PlusIcon />}
-        pageName="Invoice"
-        hideSearch={false}
-        navButtonName="Back"
-      >
-        <React.Fragment>
-          <div className="grid-columns-4 gap-4">
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />{' '}
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />{' '}
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />{' '}
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />{' '}
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />{' '}
-            <TaskCard
-              content={<h1>Hello World</h1>}
-              name="tasks"
-              title="Taskkk"
-            />
-          </div>
-          <DataTable columns={columns} data={users} />
-        </React.Fragment>
-      </Page>
-    </>
+    <React.Fragment>
+      <DataTable columns={columns} data={users} />
+    </React.Fragment>
   );
 };
+
+export default UsersTable;
