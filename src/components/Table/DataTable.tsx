@@ -56,11 +56,13 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
     setPageSize,
     selectedFlatRows,
     state: { pageIndex, pageSize, selectedRowIds },
+    page
   } = useTable(
-    { columns: tableColumns, data: tableData },
+    { columns: tableColumns, data: tableData, initialState: { pageIndex: 0, pageSize: 10 } },
     useSortBy,
     usePagination,
     useRowSelect,
+
     (hooks) => {
       hooks.visibleColumns.push((columns) => [
         {
@@ -81,6 +83,9 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
     }
   );
   console.log(pageSize);
+  console.log('pageCount', pageCount)
+  console.log('data', tableData?.length);
+
   return (
     <div className=" overflow-hidden border-gray-200 sm:rounded-lg">
       <table
@@ -114,27 +119,16 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
             </tr>
           ))}
         </thead>
-        <tbody
-          {...getTableBodyProps()}
-          className="bg-white divide-y divide-gray-200 "
-        >
-          {rows.map((row) => {
-            prepareRow(row);
+        <tbody {...getTableBodyProps()}>
+          {page.map((row, i) => {
+            prepareRow(row)
             return (
-              <tr
-                {...row.getRowProps()}
-                className="odd:bg-white even:bg-primary-bgPrimary"
-              >
-                {row.cells.map((cell) => (
-                  <td
-                    {...cell.getCellProps()}
-                    className="px-6 py-5 whitespace-nowrap text-sm text-gray-900"
-                  >
-                    {cell.render('Cell')}
-                  </td>
-                ))}
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                })}
               </tr>
-            );
+            )
           })}
         </tbody>
       </table>
