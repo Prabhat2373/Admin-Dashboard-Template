@@ -12,6 +12,7 @@ import DownArrow from '../../icons/DownArrow';
 interface TableProps {
   columns: readonly Column<any>[];
   data: any[];
+  hidePagination?: boolean
 }
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }: any, ref) => {
@@ -35,7 +36,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const DataTable: FC<TableProps> = ({ columns, data }) => {
+const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
   const tableData = useMemo(() => data, [data]);
   const tableColumns = useMemo(() => columns, [columns]);
 
@@ -137,7 +138,7 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <div className="pagination">
+      {!hidePagination && <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
         </button>{' '}
@@ -209,7 +210,7 @@ const DataTable: FC<TableProps> = ({ columns, data }) => {
             )}
           </code>
         </pre>
-      </div>
+      </div>}
     </div>
   );
 };

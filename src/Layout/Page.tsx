@@ -12,6 +12,7 @@ interface PageProps {
   topRightMenu?: any;
   onNavbuttonClick: () => void;
   children: ReactNode;
+  className?: any
 }
 const Page = ({
   pageName,
@@ -24,10 +25,11 @@ const Page = ({
   onNavbuttonClick,
   topRightMenu,
   children,
+  className
 }: PageProps) => {
   return (
     <>
-      <div className="absolute right-0 h-full w-full bg-primary-bgPrimary">
+      <div className={`absolute right-0 h-full w-full bg-primary-bgPrimary ${!!className && className}`}>
         <Navbar
           onClick={onNavbuttonClick}
           buttonName={navButtonName}
@@ -38,7 +40,7 @@ const Page = ({
           topRightMenu={topRightMenu}
           hasRightMenu={hasRightMenu}
         />
-        <div className="content ml-32 mr-4">{children}</div>
+        <div className="content ml-32 mr-4 py-8">{children}</div>
       </div>
     </>
   );

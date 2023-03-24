@@ -193,3 +193,15 @@ table input[type="checkbox"] {
 }
 
 /* GRID  */
+
+
+
+
+/* CHART */
+.recharts-wrapper{
+  width: 100% !important;
+
+}
+.recharts-surface{
+  width: 100% !important;
+}

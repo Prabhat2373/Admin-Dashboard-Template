@@ -25,7 +25,7 @@ interface Props {
   className?: any;
 }
 
-const BarChart: React.FC<Props> = ({
+const AreaChartComp: React.FC<Props> = ({
   data,
   xAxisDataKey,
   yAxisDataKey,
@@ -35,18 +35,18 @@ const BarChart: React.FC<Props> = ({
   ...rest
 }) => {
   return (
-    <ResponsiveContainer width={500} height={400}>
-      <AreaChart width={600} height={400} data={data} {...rest}>
+    <ResponsiveContainer height={400}>
+      <AreaChart data={data} {...rest}>
         <CartesianGrid strokeDasharray="1 1" />
         <XAxis dataKey={xAxisDataKey} />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Area type="monotone" dataKey="uv" stroke={barFill} fill={background} />
+        <Area type="monotone" dataKey="uv" stroke={barFill} fill={'#8884d8'} gradientTransform='yellow' />
         <Bar dataKey={yAxisDataKey} fill={barFill} />
       </AreaChart>
     </ResponsiveContainer>
   );
 };
 
-export default BarChart;
+export default AreaChartComp;
