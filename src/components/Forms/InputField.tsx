@@ -21,9 +21,8 @@ function InputField({ label, name, type, className }: CustomInputProps) {
         id={name}
         {...field}
         placeholder={label}
-        className={`${
-          meta.touched && meta.error ? "is-invalid " : ""
-        } ${className} appearance-none rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline `}
+        className={`${meta.touched && meta.error ? "is-invalid " : ""
+          } ${className} appearance-none rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline `}
       />
       {meta.touched && meta.error ? (
         <div className="invalid-feedback text-primary-danger">{meta.error}</div>

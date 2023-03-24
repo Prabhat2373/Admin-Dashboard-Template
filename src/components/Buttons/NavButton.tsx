@@ -34,12 +34,11 @@ const NavButton = ({
         onClick(name);
         navigate(route);
       }}
-      className={`${
-        isActive ? 'active' : ''
-      } dark:text-primary-bgPrimary text-black`}
+      className={`${isActive ? 'active' : ''
+        } dark:text-primary-bgPrimary text-black`}
     >
       {icon}
-      {isHovered && <span>{name}</span>}
+      {isHovered && <span className={`${!isActive ? 'text-disabled' : 'text-primary-primary'} font-semibold`}>{name}</span>}
       {hasSubNav && isHovered && (
         <Icon icon={!isActive ? <DownArrow /> : <UpArrow />} />
       )}

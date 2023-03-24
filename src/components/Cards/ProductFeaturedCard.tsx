@@ -18,8 +18,8 @@ const ProductFeaturedCard = ({
             <div className='bg-disabled rounded-xl'>
                 <img src={image} width={'100px'} alt={`product ${Math.random()}`} />
             </div>
-            <div>
-                <div>
+            <div className='flex'>
+                <div className='flex flex-col justify-between'>
                     <h1 className="text-text-primary text-lg">{title}</h1>
                     <div className="flex">
                         {[1, 2, 3, 4, 5].map((el) => {

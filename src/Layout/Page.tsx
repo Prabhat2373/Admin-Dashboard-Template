@@ -40,7 +40,7 @@ const Page = ({
           topRightMenu={topRightMenu}
           hasRightMenu={hasRightMenu}
         />
-        <div className="content ml-32 mr-4 py-8">{children}</div>
+        <div className="content ml-32 mr-4 pb-8">{children}</div>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ import Users from "../../Pages/List/Users";
 export const RouteList = [
   {
     path: "/",
-    element: <Layout child={<TestPage />} />,
+    element: <Layout child={<DashboardIndex />} />,
   },
   {
     path: "/test",
@@ -54,6 +54,10 @@ export const RouteList = [
   },
   {
     path: "/users",
+    element: <Layout child={<Users />} />,
+  },
+  {
+    path: "/invoice",
     element: <Layout child={<Users />} />,
   },
 ];

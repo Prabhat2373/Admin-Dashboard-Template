@@ -2,14 +2,17 @@ import { useState } from 'react';
 import NavButton from '../components/Buttons/NavButton';
 import DashboardIcon from '../icons/DashboardIcon';
 import ProfileIcon from '../icons/ProfileIcon';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { SidebarMenus } from '../Features/routes/SidebarMenus';
 import LogoutIcon from '../icons/LogoutIcon';
+import Logo from '../illustrations/Logo';
 
 export const Sidebar = () => {
   const [activeItem, setActiveItem] = useState<string>('');
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  const params = useLocation()
+  console.log('params', params.pathname)
   const handleClick = (item: string) => {
     setActiveItem(item !== activeItem ? item : '');
     console.log('ITEM', item);
@@ -29,78 +32,84 @@ export const Sidebar = () => {
         setIsHovered(false);
       }}
     >
-      <nav className="sidebar-nav bg-white">
-        <header className="sidebar-header flex justify-center items-center">
+      <nav className="sidebar-nav bg-white flex flex-col justify-between overflow-y-scroll ">
+        <header className="sidebar-header flex flex-col justify-center items-center py-6 px-3">
           {/* <img src={Logo} className="sidebar-logo" /> */}
-          <Link to={'/dashboard'} className='text-center ml-4' type="button">
-            {<DashboardIcon />}
+          <Link to={'/dashboard'} type="button">
+            <div>
+              {<Logo />}
+            </div>
           </Link>
-          {isHovered && <h1 className="">Dashboard</h1>}
+          <h1 className={`${isHovered ? 'text-dark-blue ' : ''} font-semibold text-lg`}>Wons</h1>
         </header>
-        {SidebarMenus.map((item) => (
-          <>
-            {!item.submenu && (
-              <NavButton
-                onClick={handleClick}
-                name={item.name}
-                icon={item.icon}
-                isActive={activeItem === item.name}
-                hasSubNav={!!item.submenu}
-                isHovered={isHovered}
-                route={item.route}
-                key={item.name}
-              />
-            )}
-            {item.submenu && (
-              <>
+        <div>
+          {SidebarMenus.map((item) => (
+            <>
+              {!item.submenu && (
                 <NavButton
                   onClick={handleClick}
                   name={item.name}
                   icon={item.icon}
-                  isActive={activeItem === item.name}
+                  isActive={activeItem === item.name || params.pathname === `/${item.name}`}
                   hasSubNav={!!item.submenu}
                   isHovered={isHovered}
                   route={item.route}
                   key={item.name}
                 />
-                <div
-                  className={`sub-nav ${
-                    isSubNavOpen(
+              )}
+              {item.submenu && (
+                <>
+                  <NavButton
+                    onClick={handleClick}
+                    name={item.name}
+                    icon={item.icon}
+                    isActive={activeItem === item.name || params.pathname === `/${item.name}`}
+                    hasSubNav={!!item.submenu}
+                    isHovered={isHovered}
+                    route={item.route}
+                    key={item.name}
+                  />
+                  <div
+                    className={`sub-nav ${isSubNavOpen(
                       item.name,
                       item.submenu?.map((el) => el?.name)
                     )
                       ? 'open'
                       : ''
-                  }`}
-                >
-                  {item.submenu.map((subItem) => (
-                    <NavButton
-                      onClick={handleClick}
-                      name={subItem?.name}
-                      isActive={activeItem === subItem?.name}
-                      icon={subItem?.icon}
-                      route={subItem?.route}
-                      isHovered={isHovered}
-                      key={item.name}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        ))}
-        <div className="absolute bottom-0 flex flex-col justify-center items-center gap-4 pb-4 transition-all duration-500">
+                      }`}
+                  >
+                    {item.submenu.map((subItem) => (
+                      <NavButton
+                        onClick={handleClick}
+                        name={subItem?.name}
+                        isActive={activeItem === subItem?.name}
+                        icon={subItem?.icon}
+                        route={subItem?.route}
+                        isHovered={isHovered}
+                        key={item.name}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
+          ))}
+        </div>
+        <div className="">
           <button onClick={() => navigate('/profile')}>
-            <ProfileIcon />
+            <ProfileIcon className="w-10" />
             {isHovered && (
               <span className="transition-all duration-500">Profile</span>
             )}
           </button>
-          <div className="flex gap-4 duration-500 cursor-pointer">
-            <LogoutIcon /> {isHovered && <span>Logout</span>}
-          </div>
+          <button onClick={() => navigate('/profile')}>
+            <LogoutIcon />
+            {isHovered && (
+              <span className="transition-all duration-500">Logout</span>
+            )}
+          </button>
         </div>
       </nav>
-    </aside>
+    </aside >
   );
 };

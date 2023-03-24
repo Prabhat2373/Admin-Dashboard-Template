@@ -9,6 +9,9 @@ import DropDownMenu from "../../components/Popups/DropDownMenu";
 import DotMenuIcon from "../../icons/DotMenuIcon";
 import DataTable from '../../components/Table/DataTable';
 import ProductFeaturedCard from '../../components/Cards/ProductFeaturedCard';
+import FORM from '../../components/Form';
+import InputField from '../../components/Forms/InputField';
+import RoundPieChart from '../../components/Charts/RoundPieChart';
 
 const DashboardIndex = () => {
   const data = [
@@ -144,9 +147,23 @@ const DashboardIndex = () => {
         onNavbuttonClick={() => console.log("cllll")}
         pageName="Dashboard"
         className={'py-4'}
+        hasRightMenu
+        topRightMenu={<>
+          <div>
+            <FORM initialValues={{
+              date: '17/03/2023'
+            }}
+              validationSchema={{}}
+              onSubmit={() => {
+                console.log('')
+              }}>
+              <InputField name='date' label='' type='date' />
+            </FORM>
+          </div>
+        </>}
       >
         <div>
-          <div className="grid  grid-cols-4 gap-5 my-5 text-center ">
+          <div className="grid grid-columns-4 gap-5 my-5 text-center ">
             {StatsInfo?.map((element) => {
               return (
                 <>
@@ -184,7 +201,7 @@ const DashboardIndex = () => {
                 }
                 title="Analytics"
               >
-                <PieChartComp />
+                <RoundPieChart />
               </Card>
             </div>
             <div className='col-span-3'>
