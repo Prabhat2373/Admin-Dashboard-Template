@@ -8,6 +8,7 @@ import {
 } from 'react-table';
 import UpArrow from '../../icons/UpArrow';
 import DownArrow from '../../icons/DownArrow';
+import Pagination from '../Pagination';
 
 interface TableProps {
   columns: readonly Column<any>[];
@@ -82,9 +83,6 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
       ]);
     }
   );
-  console.log(pageSize);
-  console.log('pageCount', pageCount)
-  console.log('data', tableData?.length);
 
   return (
     <div className=" overflow-hidden border-gray-200 sm:rounded-lg">
@@ -119,94 +117,68 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} className="bg-white divide-y divide-gray-200 ">
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} className='odd:bg-white even:bg-primary-bgPrimary'>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return <td {...cell.getCellProps()} className="px-6 py-5 whitespace-nowrap text-sm text-gray-900">{cell.render('Cell')}</td>
                 })}
               </tr>
             )
           })}
         </tbody>
       </table>
-      {!hidePagination && <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
-        <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-            style={{ width: '100px' }}
-          />
-        </span>{' '}
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        <pre>
-          <code>
-            {JSON.stringify(
-              {
-                selectedRowIds: selectedRowIds,
-                'selectedFlatRows[].original': selectedFlatRows.map(
-                  (d) => d.original
-                ),
-              },
-              null,
-              2
-            )}
-          </code>
-        </pre>
-        <pre>
-          <code>
-            {JSON.stringify(
-              {
-                pageIndex,
-                pageSize,
-                pageCount,
-                canNextPage,
-                canPreviousPage,
-              },
-              null,
-              2
-            )}
-          </code>
-        </pre>
-      </div>}
-    </div>
+
+      {!hidePagination && <Pagination canPreviousPage={canNextPage} gotoPage={gotoPage} nextPage={nextPage} pageIndex={pageIndex} pageOptions={pageOptions} pageSize={pageSize} previousPage={previousPage} setPageSize={setPageSize} />}
+
+    </div >
   );
 };
 
 export default DataTable;
+
+
+// {/* <select
+//           value={pageSize}
+//           onChange={(e) => {
+//             setPageSize(Number(e.target.value));
+//           }}
+//         >
+//           {[10, 20, 30, 40, 50].map((pageSize) => (
+//             <option key={pageSize} value={pageSize}>
+//               Show {pageSize}
+//             </option>
+//           ))}
+//         </select> */}
+// {/* <pre>
+//           <code>
+//             {JSON.stringify(
+//               {
+//                 selectedRowIds: selectedRowIds,
+//                 'selectedFlatRows[].original': selectedFlatRows.map(
+//                   (d) => d.original
+//                 ),
+//               },
+//               null,
+//               2
+//             )}
+//           </code>
+//         </pre>
+//         <pre>
+//           <code>
+//             {JSON.stringify(
+//               {
+//                 pageIndex,
+//                 pageSize,
+//                 pageCount,
+//                 canNextPage,
+//                 canPreviousPage,
+//               },
+//               null,
+//               2
+//             )}
+//           </code>
+//         </pre> */}
+// {/* </div>} */ }
