@@ -46,13 +46,14 @@ const Pagination = ({ canPreviousPage, gotoPage, nextPage, pageIndex, pageOption
                     </ul>
                 </nav>
                 <select
+                    className='px-3 rounded-lg outline-none border border-disabled'
                     value={pageSize}
                     onChange={(e) => {
                         setPageSize(Number(e.target.value));
                     }}
                 >
                     {[10, 20, 30, 40, 50].map((pageSize) => (
-                        <option key={pageSize} value={pageSize}>
+                        <option key={pageSize}  className='p-2' value={pageSize}>
                             Show {pageSize}
                         </option>
                     ))}

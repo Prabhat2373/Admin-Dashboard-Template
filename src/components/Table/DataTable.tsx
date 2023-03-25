@@ -9,11 +9,13 @@ import {
 import UpArrow from '../../icons/UpArrow';
 import DownArrow from '../../icons/DownArrow';
 import Pagination from '../Pagination';
+import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 
 interface TableProps {
   columns: readonly Column<any>[];
   data: any[];
-  hidePagination?: boolean
+  hidePagination?: boolean;
+  hasCheckBox?: boolean;
 }
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }: any, ref) => {
@@ -26,18 +28,20 @@ const IndeterminateCheckbox = React.forwardRef(
 
     return (
       <>
-        <input
-          type="checkbox"
-          ref={resolvedRef}
-          {...rest}
-          onInput={() => console.log('LOGGG', resolvedRef)}
-        />
+        {
+          <input
+            type="checkbox"
+            ref={resolvedRef}
+            {...rest}
+            onInput={() => console.log('LOGGG', resolvedRef)}
+          />
+        }
       </>
     );
   }
 );
 
-const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
+const DataTable: FC<TableProps> = ({ columns, data, hidePagination, hasCheckBox }) => {
   const tableData = useMemo(() => data, [data]);
   const tableColumns = useMemo(() => columns, [columns]);
 
@@ -63,9 +67,8 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
     useSortBy,
     usePagination,
     useRowSelect,
-
     (hooks) => {
-      hooks.visibleColumns.push((columns) => [
+      hasCheckBox && hooks.visibleColumns.push((columns) => [
         {
           id: 'selection',
           Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -82,10 +85,11 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
         ...columns,
       ]);
     }
+
   );
 
   return (
-    <div className=" overflow-hidden border-gray-200 sm:rounded-lg">
+    <div className="overflow-x-scroll border-gray-200 sm:rounded-lg">
       <table
         {...getTableProps()}
         className="min-w-full divide-y divide-gray-200"
@@ -104,9 +108,9 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
                   <span id="col-span" className="absolute bottom-2 top-3 ml-3">
                     {column?.isSorted ? (
                       column?.isSortedDesc ? (
-                        <DownArrow />
+                        <ArrowDownIcon width={'10px'} />
                       ) : (
-                        <UpArrow />
+                        <ArrowUpIcon width={'10px'} />
                       )
                     ) : (
                       ''
@@ -123,7 +127,7 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination }) => {
             return (
               <tr {...row.getRowProps()} className='odd:bg-white even:bg-primary-bgPrimary'>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()} className="px-6 py-5 whitespace-nowrap text-sm text-gray-900">{cell.render('Cell')}</td>
+                  return <td {...cell.getCellProps()} className="px-6 py-5 whitespace-nowrap text-base text-gray-900">{cell.render('Cell')}</td>
                 })}
               </tr>
             )

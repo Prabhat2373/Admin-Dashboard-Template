@@ -8,3 +8,6 @@
 .grid-columns-4{
     @apply grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2;
 }
+.badge{
+    @apply bg-primary-lightGreen px-7 py-3 rounded-xl
+}

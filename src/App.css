@@ -48,6 +48,7 @@ button {
 
 
 
+
 .sidebar-logo {
   height: 20px;
 }
@@ -213,4 +214,18 @@ nav::-webkit-scrollbar-thumb {
   background-color: rgba(169, 169, 169, 0.775);
   outline: 1px solid slategrey;
   border-radius: 12px;
+}
+
+/* DROPDOWN MENU  */
+/* #headlessui-menu-item-:r13:{
+  background: #000;
+} */
+[role="none"]{
+  display: flex;  
+  flex-direction: column;
+  gap: 4px;
+  z-index: 999;
+}
+[role="menuitem"]{
+  background-color: #3936db1a !important;
 }

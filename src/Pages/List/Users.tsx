@@ -2,6 +2,8 @@ import React from "react";
 import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/Table/DataTable";
 import Page from "../../Layout/Page";
+import DropDownMenu from '../../components/Popups/DropDownMenu';
+import DotMenuIcon from '../../icons/DotMenuIcon';
 
 const Users = () => {
   interface User {
@@ -41,11 +43,10 @@ const Users = () => {
         return (
           <>
             <span
-              className={`${
-                row?.original?.status === "active"
-                  ? "bg-primary-lightGreen"
-                  : "bg-primary-pink"
-              } rounded-3xl py-2 px-3 text-white`}
+              className={`${row?.original?.status === "active"
+                ? "bg-primary-lightGreen"
+                : "bg-primary-pink"
+                } rounded-3xl py-2 px-3 text-white`}
             >
               {row?.original?.status}
             </span>
@@ -54,12 +55,12 @@ const Users = () => {
       },
     },
     {
-      Header: "Action",
-      accessor: "action",
+      Header: "actions",
+      accessor: "actions",
       Cell: ({ row }: any) => {
         return (
           <>
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -95,7 +96,7 @@ const Users = () => {
                 />
               </svg>
 
-              <div className="" onClick={() => {}}>
+              <div className="" onClick={() => { }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -111,7 +112,11 @@ const Users = () => {
                   />
                 </svg>
               </div>
-            </div>
+            </div> */}
+            <DropDownMenu menuOptions={[
+              { title: 'Edit' },
+              { title: 'Delete' }
+            ]} menuTitle='...' menuIcon={<DotMenuIcon />} />
           </>
         );
       },
@@ -412,6 +417,7 @@ const Users = () => {
       >
         <div>
           <DataTable columns={columns} data={users} />
+
         </div>
       </Page>
     </>
