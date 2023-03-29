@@ -3,17 +3,17 @@ import SearchBar from "../../components/SearchBar";
 import DataTable from "../../components/Table/DataTable";
 import Page from "../../Layout/Page";
 import DropDownMenu from '../../components/Popups/DropDownMenu';
-import DotMenuIcon from '../../icons/DotMenuIcon';
+import DotMenuIcon from '../../illustrations/icons/DotMenuIcon';
+import Button from '../../components/Button';
+import PlusIcon from '../../illustrations/icons/PlusIcon';
+import Offcanvas from '../../components/Modals/Offcanvas';
+import FORM from '../../components/Form';
+import InputField from '../../components/Forms/InputField';
+import { CameraIcon } from '@heroicons/react/24/outline';
+import { users } from '../../__mocks__/UsersData';
 
 const Users = () => {
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    skill: string;
-    status: string;
-  }
+
 
   const columns = [
     {
@@ -43,9 +43,9 @@ const Users = () => {
         return (
           <>
             <span
-              className={`${row?.original?.status === "active"
-                ? "bg-primary-lightGreen"
-                : "bg-primary-pink"
+              className={`badge ${row?.original?.status === "active"
+                ? "bg-primary-lightGreen text-dark-green"
+                : "bg-primary-pink text-primary-pink"
                 } rounded-3xl py-2 px-3 text-white`}
             >
               {row?.original?.status}
@@ -123,303 +123,61 @@ const Users = () => {
     },
   ];
 
-  const users: User[] = [
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "pending",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "john.sdfsmith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-    {
-      id: 1,
-      name: "John Smith",
-      email: "johnsdf.smith@example.com",
-      role: "react developer",
-      skill: "javascript",
-      status: "active",
-    },
-  ];
+
+  const [open, setOpen] = React.useState<boolean>(false)
+
   return (
     <>
       <Page
         navBtnVarient="primary"
         onNavbuttonClick={() => console.log("clicked")}
         pageName="Users"
-        hideSearch={false}
+        hideSearch
         navButtonName="Back"
         hasRightMenu={true}
+        topRightMenu={<>
+          <div>
+            <Button name='Add User' varient='primary' icon={<PlusIcon />} onClick={() => setOpen((prev) => !prev)} />
+          </div>
+        </>}
       >
         <div>
-          <DataTable columns={columns} data={users} />
-
+          <DataTable columns={columns} data={users} hasCheckBox />
         </div>
       </Page>
+      <Offcanvas isOpen={open} setIsOpen={setOpen} title='Add User'>
+        <>
+          <FORM initialValues={{}} onSubmit={() => {
+            console.log('SUBMITTT')
+          }} validationSchema={{}}>
+            <div>
+              <div className='flex justify-center items-center my-6'>
+                <label htmlFor="file_input">
+                  <input type="file" id='file_input' className='hidden' />
+                  <div className='p-12 bg-primary-bgPrimary rounded-full cursor-pointer'>
+                    <CameraIcon width={'20px'} hanging={20} />
+                  </div>
+                </label>
+              </div>
+              <div>
+                <InputField label='First Name' name='first_name' type='text' />
+              </div>
+              <div>
+                <InputField label='Last Name' name='last_name' type='text' />
+              </div>
+              <div>
+                <InputField label='Email' name='email' type='email' />
+              </div>
+              <div>
+                <InputField label='Phone' name='phone' type='number' />
+              </div>
+              <div>
+                <Button name='Add User' varient='primary' />
+              </div>
+            </div>
+          </FORM>
+        </>
+      </Offcanvas>
     </>
   );
 };

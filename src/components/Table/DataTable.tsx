@@ -6,8 +6,6 @@ import {
   useRowSelect,
   usePagination,
 } from 'react-table';
-import UpArrow from '../../icons/UpArrow';
-import DownArrow from '../../icons/DownArrow';
 import Pagination from '../Pagination';
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/outline';
 
@@ -16,6 +14,7 @@ interface TableProps {
   data: any[];
   hidePagination?: boolean;
   hasCheckBox?: boolean;
+  hideActions?: boolean;
 }
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }: any, ref) => {
@@ -89,7 +88,7 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination, hasCheckBox 
   );
 
   return (
-    <div className="overflow-x-scroll border-gray-200 sm:rounded-lg">
+    <div className="overflow-x-scroll border-gray-200 sm:rounded-lg ">
       <table
         {...getTableProps()}
         className="min-w-full divide-y divide-gray-200"

@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
-import CrossIcon from '../icons/CrossIcon';
+import CrossIcon from '../illustrations/icons/CrossIcon';
 
 interface ModalProps {
   heading: string;
@@ -11,12 +11,12 @@ interface ModalProps {
   setIsOpen: any;
   height?: string;
   size:
-    | 'max-w-2xl'
-    | 'max-w-3xl'
-    | 'max-w-4xl'
-    | 'max-w-5xl'
-    | 'max-w-6xl'
-    | 'max-w-7xl';
+  | 'max-w-2xl'
+  | 'max-w-3xl'
+  | 'max-w-4xl'
+  | 'max-w-5xl'
+  | 'max-w-6xl'
+  | 'max-w-7xl';
 }
 
 export default function Modal({

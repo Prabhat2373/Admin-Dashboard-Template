@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import DownArrow from '../../icons/DownArrow';
-import UpArrow from '../../icons/UpArrow';
+import DownArrow from '../../illustrations/icons/DownArrow';
+import UpArrow from '../../illustrations/icons/UpArrow';
 
 type ButtonProps = {
   onClick: (item: string) => void;

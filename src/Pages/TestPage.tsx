@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import Button from '../components/Buttons/Button';
 import Modal from '../components/Modals/Modal';
 import TabButtons from '../components/Buttons/TabButtons';
-import CrossIcon from '../icons/CrossIcon';
+import CrossIcon from '../illustrations/icons/CrossIcon';
 import TaskCard from '../components/Cards/TaskCard';
 import AutocompleteField from '../components/Forms/AutocompleteField';
 import { FormikValues } from 'formik';
@@ -110,7 +110,12 @@ const TestPage = () => {
             onClick={() => setISCanvasOpen((prev) => !prev)}
           />
           {isCanvasOpen && (
-            <Offcanvas isOpen={isCanvasOpen} setIsOpen={setISCanvasOpen} />
+            <Offcanvas isOpen={isCanvasOpen} setIsOpen={setISCanvasOpen} title='Test' >
+
+              <div>
+                this is test
+              </div>
+            </Offcanvas>
           )}
           <TaskCard
             content={

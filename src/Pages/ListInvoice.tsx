@@ -2,7 +2,7 @@ import React from 'react';
 import Page from '../Layout/Page';
 import TaskCard from '../components/Cards/TaskCard';
 import InputField from '../components/Forms/InputField';
-import PlusIcon from '../icons/PlusIcon';
+import PlusIcon from '../illustrations/icons/PlusIcon';
 import DataTable from '../components/Table/DataTable';
 
 export const ListInvoice = () => {
@@ -43,11 +43,10 @@ export const ListInvoice = () => {
         return (
           <>
             <span
-              className={`${
-                row?.original?.status === 'active'
+              className={`${row?.original?.status === 'active'
                   ? 'bg-primary-lightGreen'
                   : 'bg-primary-pink'
-              } rounded-3xl py-2 px-3 text-white`}
+                } rounded-3xl py-2 px-3 text-white`}
             >
               {row?.original?.status}
             </span>

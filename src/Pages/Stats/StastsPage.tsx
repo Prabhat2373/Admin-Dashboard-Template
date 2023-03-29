@@ -1,5 +1,5 @@
 import React from "react";
-import HeartIcon from "../../icons/HeartIcon";
+import HeartIcon from "../../illustrations/icons/HeartIcon";
 import Page from "../../Layout/Page";
 import StatsComponent from "../Dashboard/Stats/StatsCard";
 

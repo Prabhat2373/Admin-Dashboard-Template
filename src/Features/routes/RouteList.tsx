@@ -10,6 +10,8 @@ import RegistrationForm from "../../components/Forms/RegistrationForm";
 import ForgotPassword from "../../components/Forms/ForgotPassword";
 import ResetPassword from "../../components/Forms/ResetPassword";
 import Users from "../../Pages/List/Users";
+import InvoiceIndex from '../../Pages/Invoice/InvoiceIndex';
+import CreateInvoice from '../../Pages/Invoice/CreateInvoice';
 
 export const RouteList = [
   {
@@ -58,6 +60,10 @@ export const RouteList = [
   },
   {
     path: "/invoice",
-    element: <Layout child={<Users />} />,
+    element: <Layout child={<InvoiceIndex />} />,
+  },
+  {
+    path: "/create-invoice",
+    element: <Layout child={<CreateInvoice />} />,
   },
 ];

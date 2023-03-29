@@ -1,7 +1,7 @@
 import React from 'react';
 import Page from '../Layout/Page';
 import DataTable from '../components/Table/DataTable';
-import HeartIcon from '../icons/HeartIcon';
+import HeartIcon from '../illustrations/icons/HeartIcon';
 
 const Test2 = () => {
   interface User {

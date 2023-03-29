@@ -42,17 +42,15 @@ const Button = ({
   return (
     <>
       <div
-        className={`flex ${
-          varient && currentColor
-        } rounded-lg px-4 py-2 items-center gap-3 cursor-pointer hover:opacity-70 transition-all duration-150 ${
-          !className ? '' : className
-        } `}
+        onClick={onClick}
+        className={`flex ${varient && currentColor
+          } rounded-lg px-4 py-2 items-center gap-3 cursor-pointer hover:opacity-70 transition-all duration-150 ${!className ? '' : className
+          } `}
         {...styles}
       >
         {icon}
         <button
           type={type}
-          onClick={onClick}
           disabled={disabled}
           className="border-none outline-none text-white w-full text-center cursor-pointer"
         >

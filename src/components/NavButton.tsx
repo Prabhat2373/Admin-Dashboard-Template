@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import DownArrow from '../icons/DownArrow';
-import UpArrow from '../icons/UpArrow';
+import DownArrow from '../illustrations/icons/DownArrow';
+import UpArrow from '../illustrations/icons/UpArrow';
 
 type ButtonProps = {
   onClick: (item: string) => void;
@@ -34,9 +34,8 @@ const NavButton = ({
         onClick(name);
         navigate(route);
       }}
-      className={`${
-        isActive ? 'active' : ''
-      } dark:text-primary-bgPrimary text-black`}
+      className={`${isActive ? 'active' : ''
+        } dark:text-primary-bgPrimary text-black`}
     >
       {icon}
       {isHovered && <span>{name}</span>}

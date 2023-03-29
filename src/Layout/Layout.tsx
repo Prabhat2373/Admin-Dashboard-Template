@@ -6,7 +6,9 @@ const Layout = ({ child }: { child: JSX.Element }) => {
     <>
       <div className="bg-primary-bgPrimary">
         <Sidebar />
-        {child}
+        <div className='child-content ml-28'>
+          {child}
+        </div>
       </div>
     </>
   );

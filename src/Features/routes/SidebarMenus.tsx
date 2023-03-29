@@ -1,12 +1,12 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import AnalyticsIcon from "../../icons/AnalyticsIcon";
-import DashboardIcon from '../../icons/DashboardIcon';
-import Invoice from "../../icons/Invoice";
-import ScheduleIcon from '../../icons/ScheduleIcon';
-import MessageIcon from '../../icons/MessageIcon';
-import SettingsIcon from '../../icons/SettingsIcon';
-import NotificationIcon from '../../icons/NotificationIcon';
-import CalenderIcon from '../../icons/CalenderIcon';
+import AnalyticsIcon from "../../illustrations/icons/AnalyticsIcon";
+import DashboardIcon from '../../illustrations/icons/DashboardIcon';
+import Invoice from "../../illustrations/icons/Invoice";
+import ScheduleIcon from '../../illustrations/icons/ScheduleIcon';
+import MessageIcon from '../../illustrations/icons/MessageIcon';
+import SettingsIcon from '../../illustrations/icons/SettingsIcon';
+import NotificationIcon from '../../illustrations/icons/NotificationIcon';
+import CalenderIcon from '../../illustrations/icons/CalenderIcon';
 
 export const SidebarMenus = [
   {
@@ -22,27 +22,19 @@ export const SidebarMenus = [
   {
     name: "Invoice",
     icon: <Invoice />,
-    route: "/test",
+    route: "/invoice",
     submenu: [
       {
-        name: "Index",
-        route: "/invoice",
+        name: "Create ",
+        route: "/create-invoice",
         icon: <Invoice />,
-      }, {
-        name: "history",
-        route: "/history",
-        icon: <AnalyticsIcon />,
-      }, {
-        name: "history",
-        route: "/history",
-        icon: <AnalyticsIcon />,
-      },
+      }
     ],
   },
   {
-    name: "Scehdule",
+    name: "Users",
     icon: <ScheduleIcon />,
-    route: "/test",
+    route: "/users",
   },
   {
     name: "Calender",

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import NavButton from '../components/Buttons/NavButton';
-import DashboardIcon from '../icons/DashboardIcon';
-import ProfileIcon from '../icons/ProfileIcon';
+import DashboardIcon from '../illustrations/icons/DashboardIcon';
+import ProfileIcon from '../illustrations/icons/ProfileIcon';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { SidebarMenus } from '../Features/routes/SidebarMenus';
-import LogoutIcon from '../icons/LogoutIcon';
+import LogoutIcon from '../illustrations/icons/LogoutIcon';
 import Logo from '../illustrations/Logo';
 
 export const Sidebar = () => {
