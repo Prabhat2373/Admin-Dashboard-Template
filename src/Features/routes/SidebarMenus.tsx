@@ -8,7 +8,13 @@ import SettingsIcon from '../../illustrations/icons/SettingsIcon';
 import NotificationIcon from '../../illustrations/icons/NotificationIcon';
 import CalenderIcon from '../../illustrations/icons/CalenderIcon';
 
-export const SidebarMenus = [
+interface MenuOptions {
+  name: string;
+  icon: JSX.Element;
+  route: string;
+  submenu?: MenuOptions[];
+}
+export const SidebarMenus: MenuOptions[] = [
   {
     name: "Dashboard",
     icon: <DashboardIcon />,
@@ -50,7 +56,7 @@ export const SidebarMenus = [
       {
         name: 'Clients',
         icon: <AnalyticsIcon />,
-        route: "/test",
+        route: "/new",
       }
     ]
   },

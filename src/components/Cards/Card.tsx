@@ -10,7 +10,7 @@ const Card = ({ title, dropdown, children }: CardProps) => {
     <React.Fragment>
       <div className="bg-white flex flex-col rounded-xl p-5 h-full">
         <div className="top flex justify-between ">
-          <h1 className="text-text-primary font-medium text-2xl">{title}</h1>
+          <h1 className="text-text-primary font-medium text-2xl py-3">{title}</h1>
         <p>{dropdown}</p>
         </div>
         <div className="content flex justify-center items-center h-full w-full">

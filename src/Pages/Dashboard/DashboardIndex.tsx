@@ -178,8 +178,8 @@ const DashboardIndex = () => {
             })}
           </div>
 
-          <div className="chart-container grid grid-cols-5 gap-5">
-            <div className="col-span-3">
+          <div className="chart-container flex flex-col md:grid md:grid-cols-5 gap-5">
+            <div className="md:col-span-3 grid">
               <Card title="Reports">
                 <BarChart
                   data={data}
@@ -190,7 +190,7 @@ const DashboardIndex = () => {
                 />
               </Card>
             </div>
-            <div className="pie col-span-2 ">
+            <div className="pie md:col-span-2 grid">
               <Card
                 dropdown={
                   <DropDownMenu

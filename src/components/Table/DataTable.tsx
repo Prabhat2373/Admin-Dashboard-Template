@@ -1,4 +1,4 @@
-import React, { FC, MutableRefObject, useMemo } from 'react';
+import React, { FC, MutableRefObject, useEffect, useMemo } from 'react';
 import {
   useTable,
   Column,
@@ -15,6 +15,7 @@ interface TableProps {
   hidePagination?: boolean;
   hasCheckBox?: boolean;
   hideActions?: boolean;
+  setSelectedRows?: React.Dispatch<React.SetStateAction<any[]>>;
 }
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }: any, ref) => {
@@ -40,7 +41,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const DataTable: FC<TableProps> = ({ columns, data, hidePagination, hasCheckBox }) => {
+const DataTable: FC<TableProps> = ({ columns, setSelectedRows, data, hidePagination, hasCheckBox }) => {
   const tableData = useMemo(() => data, [data]);
   const tableColumns = useMemo(() => columns, [columns]);
 
@@ -87,6 +88,11 @@ const DataTable: FC<TableProps> = ({ columns, data, hidePagination, hasCheckBox 
 
   );
 
+  const selectedItems = selectedFlatRows?.map((elem) => elem?.original)
+
+  useEffect(() => {
+    setSelectedRows && setSelectedRows(selectedItems)
+  }, [selectedRowIds])
   return (
     <div className="overflow-x-scroll border-gray-200 sm:rounded-lg ">
       <table

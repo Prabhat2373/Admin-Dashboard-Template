@@ -8,6 +8,7 @@ module.exports = {
       white: "#ffffff",
       black: "#000000",
       primary: {
+        '100': '#F1F4FA',
         bgPrimary: "#F1F4FA",
         pink: "#FF69B4",
         lightGreen: "#03A89E",
@@ -19,6 +20,8 @@ module.exports = {
       text: {
         primary: "#06152B",
         blue: "#095eda",
+        info: '#5B93FF',
+        warning: '#FF8F6B'
       },
       disabled: "#99B2C6",
       dark: {

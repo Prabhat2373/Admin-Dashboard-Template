@@ -25,7 +25,7 @@ export default function Offcanvas({ isOpen, setIsOpen, children, title }: Props)
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden bg-[#00000038]">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
                 as={Fragment}

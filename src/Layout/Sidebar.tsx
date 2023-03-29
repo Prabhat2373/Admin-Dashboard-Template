@@ -12,15 +12,18 @@ export const Sidebar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const params = useLocation()
-  console.log('params', params.pathname)
+  // console.log('params', params.pathname)
   const handleClick = (item: string) => {
-    setActiveItem(item !== activeItem ? item : '');
-    console.log('ITEM', item);
+    // console.log('ITEM', item);
+    if (params.pathname) {
+      setActiveItem(item !== activeItem ? item : '');
+      console.log('THIS IS ACTIVE ITEM', item)
+    }
     navigate(`/${item}`);
   };
   console.log('ACTIVE', activeItem);
-  const isSubNavOpen = (item: string, items: string[]) =>
-    items.some((i) => i === activeItem) || item === activeItem;
+  const isSubNavOpen = (item: string, route: string, items: string[]) => items.some((i) => i === activeItem) || item === activeItem;
+
   return (
     <aside
       className="sidebar bg-primary-bgPrimary z-50"
@@ -50,7 +53,7 @@ export const Sidebar = () => {
                   onClick={handleClick}
                   name={item.name}
                   icon={item.icon}
-                  isActive={activeItem === item.name || params.pathname === `/${item.name}`}
+                  isActive={item.name === activeItem}
                   hasSubNav={!!item.submenu}
                   isHovered={isHovered}
                   route={item.route}
@@ -63,7 +66,7 @@ export const Sidebar = () => {
                     onClick={handleClick}
                     name={item.name}
                     icon={item.icon}
-                    isActive={activeItem === item.name || params.pathname === `/${item.name}`}
+                    isActive={activeItem === item.name || params.pathname === `${item.route}`}
                     hasSubNav={!!item.submenu}
                     isHovered={isHovered}
                     route={item.route}
@@ -72,6 +75,7 @@ export const Sidebar = () => {
                   <div
                     className={`sub-nav ${isSubNavOpen(
                       item.name,
+                      item.route,
                       item.submenu?.map((el) => el?.name)
                     )
                       ? 'open'
@@ -82,7 +86,7 @@ export const Sidebar = () => {
                       <NavButton
                         onClick={handleClick}
                         name={subItem?.name}
-                        isActive={activeItem === subItem?.name}
+                        isActive={activeItem === subItem?.name || params.pathname === subItem.route}
                         icon={subItem?.icon}
                         route={subItem?.route}
                         isHovered={isHovered}

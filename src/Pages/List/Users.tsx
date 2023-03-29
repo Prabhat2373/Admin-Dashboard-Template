@@ -123,8 +123,10 @@ const Users = () => {
     },
   ];
 
+  const [selected, setSelected] = React.useState<any>([]);
 
   const [open, setOpen] = React.useState<boolean>(false)
+  console.log('selectedItem', selected)
 
   return (
     <>
@@ -142,7 +144,7 @@ const Users = () => {
         </>}
       >
         <div>
-          <DataTable columns={columns} data={users} hasCheckBox />
+          <DataTable columns={columns} data={users} hasCheckBox setSelectedRows={setSelected} />
         </div>
       </Page>
       <Offcanvas isOpen={open} setIsOpen={setOpen} title='Add User'>
