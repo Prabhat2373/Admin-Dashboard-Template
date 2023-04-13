@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './Button';
 import SearchBar from './SearchBar';
+import Button from './Buttons/Button';
 
 interface NavbarProps {
   name: string;
@@ -8,7 +8,7 @@ interface NavbarProps {
   buttonName: string;
   buttonIcon?: any;
   buttonVarient: 'primary' | 'secondary' | 'danger' | 'disabled';
-  onClick:()=> void;
+  onClick: () => void;
 }
 const Navbar = ({
   name,

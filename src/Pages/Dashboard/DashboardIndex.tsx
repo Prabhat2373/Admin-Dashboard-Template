@@ -9,9 +9,10 @@ import DropDownMenu from "../../components/Popups/DropDownMenu";
 import DotMenuIcon from "../../illustrations/icons/DotMenuIcon";
 import DataTable from '../../components/Table/DataTable';
 import ProductFeaturedCard from '../../components/Cards/ProductFeaturedCard';
-import FORM from '../../components/Form';
+
 import InputField from '../../components/Forms/InputField';
 import RoundPieChart from '../../components/Charts/RoundPieChart';
+import FORM from '../../components/Forms/Form';
 
 const DashboardIndex = () => {
   const data = [

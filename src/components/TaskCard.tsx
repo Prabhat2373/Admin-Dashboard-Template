@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from './Button';
 import DropDownMenu from './DropDownMenu';
+import Button from './Buttons/Button';
 
 interface TaskCardProps {
   name: string;

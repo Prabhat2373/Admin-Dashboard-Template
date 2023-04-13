@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { CameraIcon } from '@heroicons/react/24/outline';
-import FORM from '../../components/Form';
 import InputField from '../../components/Forms/InputField';
+import FORM from '../../components/Forms/Form';
 
 const CreateInvoice = () => {
     const [date, changeDate] = useState<any>([new Date(), new Date()])

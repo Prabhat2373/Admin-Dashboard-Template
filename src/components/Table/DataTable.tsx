@@ -16,6 +16,7 @@ interface TableProps {
   hasCheckBox?: boolean;
   hideActions?: boolean;
   setSelectedRows?: React.Dispatch<React.SetStateAction<any[]>>;
+  onRowClick?: () => void;
 }
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }: any, ref) => {
@@ -41,7 +42,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const DataTable: FC<TableProps> = ({ columns, setSelectedRows, data, hidePagination, hasCheckBox }) => {
+const DataTable: FC<TableProps> = ({ columns, setSelectedRows, data, hidePagination, hasCheckBox, onRowClick }) => {
   const tableData = useMemo(() => data, [data]);
   const tableColumns = useMemo(() => columns, [columns]);
 
@@ -101,7 +102,7 @@ const DataTable: FC<TableProps> = ({ columns, setSelectedRows, data, hidePaginat
       >
         <thead className="bg-gray-50">
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr {...headerGroup.getHeaderGroupProps()} >
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
@@ -130,7 +131,7 @@ const DataTable: FC<TableProps> = ({ columns, setSelectedRows, data, hidePaginat
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()} className='odd:bg-white even:bg-primary-bgPrimary'>
+              <tr {...row.getRowProps()} className='odd:bg-white even:bg-primary-bgPrimary' onClick={onRowClick}>
                 {row.cells.map(cell => {
                   return <td {...cell.getCellProps()} className="px-6 py-5 whitespace-nowrap text-base text-gray-900">{cell.render('Cell')}</td>
                 })}
